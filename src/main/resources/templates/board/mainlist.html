@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/header :: head('Community index')">
+  <head th:replace="fragments/header :: head('메인 게시판')">
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -15,23 +15,23 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link href="starter-template.css" rel="stylesheet" />
-    <title>Community</title>
+    <link
+      href="starter-template.css"
+      th:href="@{/starter-template.css}"
+      rel="stylesheet"
+    />
+    <title>메인 게시판</title>
   </head>
   <body>
     <nav
       class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"
-      th:replace="fragments/header :: header('index')"
+      th:replace="fragments/header :: header('mainlist')"
     ></nav>
-    <main role="main" class="container">
-      <div class="starter-template">
-        <h1>Community 메인 페이지</h1>
-        <p class="lead">
-          Community<br />
-          Community . Community
-        </p>
-      </div>
-    </main>
+
+    <div class="container">
+      <h2>메인 게시판</h2>
+    </div>
+
     <!-- /.container -->
 
     <!-- Optional JavaScript; choose one of the two! -->
