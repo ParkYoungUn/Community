@@ -75,12 +75,15 @@
                 </div>
             </li> -->
         </ul>
+
         <a
           class="btn btn-secondary my-2 mr-2 my-sm-0"
           th:href="@{/account/login}"
           sec:authorize="!isAuthenticated()"
           >로그인</a
         >
+        <!-- sec:authorize="!isAuthenticated()"  로그인 안된 사용자 -->
+
         <a
           class="btn btn-secondary my-2 my-sm-0"
           th:href="@{/account/register}"
@@ -94,13 +97,14 @@
           method="POST"
           sec:authorize="isAuthenticated()"
         >
-          <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
+          <!-- sec:authorize="isAuthenticated()"  로그인 된 사용자 -->
           <span class="text-white" sec:authentication="name">사용자</span>
           <span
             class="text-white mx-2"
             sec:authentication="principal.authorities"
             >권한</span
           >
+          <!-- sec:authentication="principal.authorities" 권한 리스트 표시 -->
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">
             Logout
           </button>

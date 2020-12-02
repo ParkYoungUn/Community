@@ -1,6 +1,5 @@
 package com.yi.community.model;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +17,11 @@ public class User {
     private String username;
     private String password;
     private Boolean enabled;
+    
+//  @OneToOne: user - ex) user_detail
+//  @OneToMany: user - ex) board
+//  @ManyToOne: ex) board - user
+//  @ManyToMany: ex) user -role
 
     @ManyToMany
     @JoinTable(
