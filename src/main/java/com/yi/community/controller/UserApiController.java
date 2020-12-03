@@ -13,18 +13,18 @@ import java.util.List;
 class UserApiController {
 	
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     // Aggregate root
 
     @GetMapping("/users")  // 전체 조회
     List<User> all() {
-    	return userRepository.findAll();
+    	return repository.findAll();
     }
 
     @PostMapping("/users") // 추가
     User newUser(@RequestBody User newUser) {
-        return userRepository.save(newUser);
+        return repository.save(newUser);
     }
 
     // Single item
@@ -32,27 +32,27 @@ class UserApiController {
     @GetMapping("/users/{id}") // id에 해당하는 user 조회
     User one(@PathVariable Long id) {
 
-        return userRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
     @PutMapping("/users/{id}") // 업데이트
     User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
-        return userRepository.findById(id)
+        return repository.findById(id)
                 .map(user -> {
 //                	user.setTitle(newUser.getTitle());
 //                	user.setContent(newUser.getContent());
                 	
-                    return userRepository.save(user);
+                    return repository.save(user);
                 })
                 .orElseGet(() -> {
                     newUser.setId(id);
-                    return userRepository.save(newUser);
+                    return repository.save(newUser);
                 });
     }
 
     @DeleteMapping("/users/{id}")  // 삭제
     void deleteUser(@PathVariable Long id) {
-    	userRepository.deleteById(id);
+    	repository.deleteById(id);
     }
 }
