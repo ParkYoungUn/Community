@@ -2,12 +2,14 @@ package com.yi.community.controller;
 
 import com.yi.community.model.Board;
 import com.yi.community.repository.BoardRepository;
+import com.yi.community.service.BoardService;
 import com.yi.community.validator.BoardValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,9 @@ public class BoardController {
 
     @Autowired
     private BoardRepository boardRepository;
+    
+    @Autowired
+    private BoardService boardService;
 
     @Autowired
     private BoardValidator boardValidator;
@@ -51,12 +56,18 @@ public class BoardController {
     }
 
     @PostMapping("/form")
-    public String greetingSubmit(@Valid Board board, BindingResult bindingResult) {
+    public String postForm(@Valid Board board, BindingResult bindingResult, Authentication authentication) { // Authentication: 인증정보 받아오기 위해 사용
         boardValidator.validate(board,bindingResult);
         if (bindingResult.hasErrors()) {
             return "board/form";
         }
-        boardRepository.save(board);
+        
+        String username = authentication.getName();
+        boardService.save(username, board);
+        
+//        boardRepository.save(board);
+        
+        
         return "redirect:/board/list";
     }
 
