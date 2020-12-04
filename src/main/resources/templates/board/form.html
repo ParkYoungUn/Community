@@ -83,6 +83,16 @@
           <button type="submit" class="btn btn-primary">확인</button>
         </div>
       </form>
+
+      <form
+        th:action="@{'/board/deleteForm/' + ${board.id}}"
+        th:object="${board}"
+        method="post"
+      >
+        <input type="hidden" th:value="${board.id}" />
+        <!-- <p th:text="${board.id}"></p> -->
+        <input type="submit" value="form삭제" />
+      </form>
     </div>
 
     <!-- Optional JavaScript -->

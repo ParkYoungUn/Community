@@ -24,6 +24,6 @@ public class Board {
     private String content;
     
     @ManyToOne
-    @JoinColumn(name="user_id") // referencedColumnName = "id" : pk값 이므로 생략가능
+    @JoinColumn(name="user_id", referencedColumnName = "id") // referencedColumnName = "id" : pk값 이므로 생략가능
     private User user;
 }

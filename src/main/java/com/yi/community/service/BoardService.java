@@ -21,5 +21,9 @@ public class BoardService {
 		User user = userRepository.findByUsername(username);
 		board.setUser(user);
 		return boardRepository.save(board);
-	} 
+	}
+	
+	
+	
+	
 }

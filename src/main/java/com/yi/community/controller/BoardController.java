@@ -32,7 +32,7 @@ public class BoardController {
     private BoardValidator boardValidator;
 
     @GetMapping("/list")
-    public String list(Model model, @PageableDefault(size =2) Pageable pageable,
+    public String list(Model model, @PageableDefault(size =5) Pageable pageable,
                        @RequestParam(required = false, defaultValue = "") String searchText) {
 //        Page<Board> boards = boardRepository.findAll(pageable);
         Page<Board> boards = boardRepository.findByTitleContainingOrContentContaining(searchText, searchText, pageable);
@@ -64,11 +64,24 @@ public class BoardController {
         
         String username = authentication.getName();
         boardService.save(username, board);
-        
 //        boardRepository.save(board);
-        
-        
         return "redirect:/board/list";
     }
+    
 
+//    @DeleteMapping("board/{id}")
+//    public void boardDelete(Model model, @PathVariable long id) {
+//    	boardService.deleteBoard(id);
+//    }
+    
+    
+    @PostMapping("/deleteForm/{id}")
+    public String delete(@PathVariable("id") String id) {
+    	System.out.println("삭제한 게시글 : "+id);
+//        boardService.deleteBoard(id);
+    	boardRepository.deleteById(Long.parseLong(id));
+        return "redirect:/board/list";
+    }
+    
+    
 }

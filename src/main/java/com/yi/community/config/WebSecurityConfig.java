@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        		// .csrf().disable() // 보안 해제(주의! 보안이 취약해짐)
+        		.csrf().disable() // 보안 해제(주의! 보안이 취약해짐)
                 .authorizeRequests()
                     .antMatchers("/", "/account/register", "/css/**").permitAll() // permitAll : 누구나 접근 할 수 있다.
                     .anyRequest().authenticated()	// anyRequest : 그 밖의 , authenticated: 로그인 되어있어야 한다.
